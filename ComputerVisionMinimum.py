@@ -1,9 +1,13 @@
 import cv2
-import mediapipe
+import mediapipe as mp
 
 
 def say_hi ():
     print('Hello Camera')
 
-if __name__ == '__main__':
-    say_hi()
+cap = cv2.VideoCapture(1)
+
+while True:
+    success, img = cap.read()
+    cv2.imshow("Image",img)
+    cv2.waitKey(1)
