@@ -24,8 +24,10 @@ while True:
             for lm_id, lm in enumerate(handLMS.landmark):
                 print(lm_id, lm)
                 img_height, img_width, img_channels = img.shape
-                center_x = center_y = int(lm.x * img_width), int(lm.y * img_height)
-                print(lm_id,"\t",center_x,"\t",center_x)
+                center_x , center_y = int(lm.x * img_width), int(lm.y * img_height)
+                print(lm_id, "\t", center_x, "\t", center_x)
+                if lm_id == 4:
+                    cv2.circle(img, (center_x, center_y), 15, (255, 0, 255), cv2.FILLED)
 
             mpDraw.draw_landmarks(img, handLMS, mpHands.HAND_CONNECTIONS)
 
@@ -33,7 +35,7 @@ while True:
     fps = 1 / (cTime - pTime)
     pTime = cTime
 
-    cv2.putText(img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
+    cv2.putText(img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 255, 255), 3)
 
     cv2.imshow('Image', img)
     cv2.waitKey(1)
